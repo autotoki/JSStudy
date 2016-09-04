@@ -12,135 +12,12 @@
 
       </nav>
       <div class="pj-content">
+        <button onclick='javascript:choiLayer.open();' class='btn-type mgB30'>리스트 추가하기</button>
         <div id="injectionTarget">
         </div>
       </div>
     </div>
 
-
-    <script>
-    var injectionTarget = document.getElementById('injectionTarget');
-    var listStr = "";
-
-    var gnProfile = {
-      "name": "김민희",
-      gender: "M",
-      address: "서울시 강남구",
-      tel: "010-1234-1111 "
-    };
-
-    var ypProfile = {
-      name: "이은지",
-      gender: "F",
-      address: "서울시 영등포구",
-      tel: "010-1234-2222 "
-    };
-
-    var grProfile = {
-      name: "박지원",
-      gender: "M",
-      address: "서울시 중랑구 ",
-      tel: "010-1234-3333 "
-    }
-
-
-    var profiles = [gnProfile, ypProfile, grProfile];
-
-    listStr += "<button onclick='javascript:ViewLayer();' class='btn-type mgB30'>리스트 추가하기</button>"
-
-    for (var i = 0; i < profiles.length; i++) {
-
-      listStr += "<table class='board-list'>"
-      listStr += "<tr>"
-      listStr += "<th>" + "이름" + "</th>"
-      listStr += "<td>" + profiles[i].name + "</td>"
-      listStr += "<th>" + "성별" + "</th>"
-
-      if (profiles[i].gender === "M"){
-        listStr += "<td class='gen-m'>" + profiles[i].gender + "</td>"
-      }
-      else {
-        listStr += "<td class='gen-f'>" + profiles[i].gender + "</td>"
-      }
-      listStr += "</tr>"
-      listStr += "<tr>"
-      listStr += "<th>" + "주소" + "</th>"
-      listStr += "<td colspan='3'>" + profiles[i].address + "</td>"
-      listStr += "</tr>"
-      listStr += "<tr>"
-      listStr += "<th>" + "전화번호" + "</th>"
-      listStr += "<td colspan='3'>" + profiles[i].tel + "</td>"
-      listStr += "</tr>"
-
-      // for (var i = 0; i < profiles.length; i++) {
-      //
-      //   if (profiles[i].age > 30 && profiles[i].age < 40) {
-      //     // console.log(profiles[i].name + "님은 늙으셨군요");
-      //     listStr += "<li>" +profiles[i].name + "님은 늙으셨군요" + "</li>"
-      //   } else {
-      //     // console.log(profiles[i].name + "님은 젋으시네요.");
-      //     listStr += "<li>" +profiles[i].name + "님은 젋으시네요" + "</li>"
-      //   }
-      //
-      // }
-
-      listStr += "</table>";
-
-    }
-
-    injectionTarget.innerHTML = listStr;
-
-    function OpenLayer(){
-      document.getElementById("Pop").style.display='block'
-    }
-    function CloseLayer(){
-      document.getElementById("Pop").style.display='none'
-    }
-
-
-    // var injectionTarget = document.getElementById('injectionTarget');
-    // var listStr = "";
-    //
-    // var myProfile = {
-    //   "name": "강승철",
-    //   "age": 37,
-    //   gender: "M"
-    // };
-    //
-    // var chProfile = {
-    //   name: "최혜영",
-    //   age: 30,
-    //   gender: "F"
-    // };
-    //
-    // var parkProfile = {
-    //   name: "박영수",
-    //   age: 34,
-    //   gender: "M"
-    // }
-    //
-    //
-    // var profiles = [myProfile, chProfile, parkProfile];
-    //
-    // listStr += "<ul>"
-    //
-    // for (var i = 0; i < profiles.length; i++) {
-    //
-    //   if (profiles[i].age > 30 && profiles[i].age < 40) {
-    //     // console.log(profiles[i].name + "님은 늙으셨군요");
-    //     listStr += "<li>" +profiles[i].name + "님은 늙으셨군요" + "</li>"
-    //   } else {
-    //     // console.log(profiles[i].name + "님은 젋으시네요.");
-    //     listStr += "<li>" +profiles[i].name + "님은 젋으시네요" + "</li>"
-    //   }
-    //
-    // }
-    //
-    // listStr += "</ul>";
-    //
-    // injectionTarget.innerHTML = listStr;
-
-    </script>
     <div id="Pop">
       <div class="pop">
         <h1 class="pop-header">
@@ -152,19 +29,24 @@
             <dd><input type"text" name="pjName" class="input" /></dd>
             <dt>성별</dt>
             <dd>
-              <input type="radio" id="pjGenderM" name="pjGender" /><label for ="pjGenderM">남</label>
-              <input type="radio" id="pjGenderF" name="pjGender" /><label for ="pjGenderF">여</label>
+              <input type="radio" id="pjGenderM" name="pjGender" value="M"/>
+              <label for ="pjGenderM">남</label>
+              <input type="radio" id="pjGenderF" name="pjGender" value="F"/>
+              <label for ="pjGenderF">여</label>
             </dd>
             <dt><label for ="pjAddr">주소</label></dt>
             <dd><input type"text" name="pjAddr" class="input" /></dd>
             <dt><label for ="pjTel">전화번호</label></dt>
             <dd><input type"text" name="pjTel" class="input" /></dd>
           </dl>
-          <button onclick="javascript:CloseLayer();" class="btn-type">저장</button>
-          <button onclick="javascript:CloseLayer();" class="btn-type">닫기</button>
+          <button onclick="javascript:choiLayer.save();" class="btn-type">저장</button>
+          <button onclick="javascript:choiLayer.close();" class="btn-type">닫기</button>
         </div>
       </div>
       <div class="mask"></div>
     </div>
+
+    <script src="js/study.js"></script>
+
   </body>
 </html>
