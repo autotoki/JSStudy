@@ -1,0 +1,251 @@
+<!Doctype html>
+<html>
+  <head>
+    <link type"text/css" rel="stylesheet" href="styles/css/chy.css" />
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script>
+      // 논리연산자
+      // var losic1, logic2, logic3
+      // logic1 = 3>2&&5>3;
+      // document.write(logic1+"<br />");
+      // logic2 = 3>2||5<3;
+      // document.write(logic2+"<br />");
+      // logic3 = !(3>2);
+      // document.write(logic3);
+
+      // if~else문
+      // var id = prompt("ID입력","");
+      // var pw = prompt("PW입력","");
+      // if(id == "kim"&&pw == 1234){
+      //     document.write("로그인성공");
+      // }else{
+      //     document.write("로그인실패");
+      // }
+
+      // if문 안의 if
+      // var gender = prompt("'남성'또는 '여성'을 입력하세요!");
+      // var age = prompt("나이를 입력하세요!");
+      // var comment = "";
+      //
+      // if(gender == "남성"){
+      //   if(age<20){
+      //       comment = "Man1 제품을 추천합니다."
+      //   }else if(age>=20){
+      //       comment = "Man2 제품을 추천합니다."
+      //   }else{
+      //       comment = "나이를 잘못 입력하셨습니다."
+      //   }
+      // }else if(gender == "여성"){
+      //   if(age<20){
+      //       comment = "Women1 제품을 추천합니다."
+      //   }else if(age>=20){
+      //       comment = "Women2 제품을 추천합니다."
+      //   }else{
+      //       comment = "나이를 잘못 입력하셨습니다."
+      //   }
+      //
+      // }else{
+      //     comment = "성별을 잘못 입력하셨습니다."
+      // }
+      // document.write(comment);
+
+      // if~else문
+      // var subject1 = "Javascript";
+      // var subject2 = "jQuery";
+      // var score1 = 0;
+      // var score2 = 0;
+      // if(subject1 == "Javascript"){
+      //   score1 +=90;
+      // }else if(subject2 =="jQuery"){
+      //   score2 +=95;
+      // }
+      // document.write(score1+"<br />");//90
+      // document.write(score2);//0
+
+      // switch문
+      // var subject = prompt("html,css,javascript,jquery중 입력");
+      // switch(subject){
+      //   case"html":
+      //   subject+="는 1학점입니다.";
+      //   break;
+      //   case"css":
+      //   subject+="는 1학점입니다.";
+      //   break;
+      //   case"javascript":
+      //   subject+="는 2학점입니다.";
+      //   break;
+      //   case"jquery":
+      //   subject+="는 2학점입니다.";
+      //   break;
+      //   default:
+      //   subject = "해당 과목이 없습니다.";
+      // }
+      // document.write(subject);
+
+      //while문
+      // var i = 1;
+      // while (i < 10) {
+      //   document.write(i + "<br />");
+      //   i++;
+      // }
+
+      //do~while문
+      // var i = 1;
+      // do{
+      //   document.write(i + "<br />");
+      //   i++;
+      // }while (i < 10);
+
+      //for문
+      // for(var i = 1;i<10;i++){
+      //   document.write(i + "<br />");
+      // }
+
+      //for문 안의 for문
+
+    </script>
+  </head>
+  <body>
+    <div class="pj-wrap">
+      <div id="injectionTarget">
+      </div>
+    </div>
+
+
+    <script>
+    var injectionTarget = document.getElementById('injectionTarget');
+    var listStr = "";
+
+    var gnProfile = {
+      "name": "김민희",
+      gender: "M",
+      address: "서울시 강남구",
+      tel: "010-1234-1111 "
+    };
+
+    var ypProfile = {
+      name: "이은지",
+      gender: "F",
+      address: "서울시 영등포구",
+      tel: "010-1234-2222 "
+    };
+
+    var grProfile = {
+      name: "박지원",
+      gender: "M",
+      address: "서울시 중랑구 ",
+      tel: "010-1234-3333 "
+    }
+
+
+    var profiles = [gnProfile, ypProfile, grProfile];
+
+    listStr += "<button  onclick='javascript:ViewLayer();'>리스트 추가하기</button>"
+
+    for (var i = 0; i < profiles.length; i++) {
+
+      listStr += "<table class='board-list'>"
+      listStr += "<tr>"
+      listStr += "<th>" + "이름" + "</th>"
+      listStr += "<td>" + profiles[i].name + "</td>"
+      listStr += "<th>" + "성별" + "</th>"
+
+      if (profiles[i].gender === "M"){
+        listStr += "<td class='gen-m'>" + profiles[i].gender + "</td>"
+      }
+      else {
+        listStr += "<td class='gen-f'>" + profiles[i].gender + "</td>"
+      }
+      listStr += "</tr>"
+      listStr += "<tr>"
+      listStr += "<th>" + "주소" + "</th>"
+      listStr += "<td colspan='3'>" + profiles[i].address + "</td>"
+      listStr += "</tr>"
+      listStr += "<tr>"
+      listStr += "<th>" + "전화번호" + "</th>"
+      listStr += "<td colspan='3'>" + profiles[i].tel + "</td>"
+      listStr += "</tr>"
+
+      // for (var i = 0; i < profiles.length; i++) {
+      //
+      //   if (profiles[i].age > 30 && profiles[i].age < 40) {
+      //     // console.log(profiles[i].name + "님은 늙으셨군요");
+      //     listStr += "<li>" +profiles[i].name + "님은 늙으셨군요" + "</li>"
+      //   } else {
+      //     // console.log(profiles[i].name + "님은 젋으시네요.");
+      //     listStr += "<li>" +profiles[i].name + "님은 젋으시네요" + "</li>"
+      //   }
+      //
+      // }
+
+      listStr += "</table>";
+
+    }
+
+    injectionTarget.innerHTML = listStr;
+
+    function ViewLayer(){
+      document.getElementById("Pop").style.display='block'
+    }
+    function CloseLayer(){
+      document.getElementById("Pop").style.display='none'
+    }
+
+
+    // var injectionTarget = document.getElementById('injectionTarget');
+    // var listStr = "";
+    //
+    // var myProfile = {
+    //   "name": "강승철",
+    //   "age": 37,
+    //   gender: "M"
+    // };
+    //
+    // var chProfile = {
+    //   name: "최혜영",
+    //   age: 30,
+    //   gender: "F"
+    // };
+    //
+    // var parkProfile = {
+    //   name: "박영수",
+    //   age: 34,
+    //   gender: "M"
+    // }
+    //
+    //
+    // var profiles = [myProfile, chProfile, parkProfile];
+    //
+    // listStr += "<ul>"
+    //
+    // for (var i = 0; i < profiles.length; i++) {
+    //
+    //   if (profiles[i].age > 30 && profiles[i].age < 40) {
+    //     // console.log(profiles[i].name + "님은 늙으셨군요");
+    //     listStr += "<li>" +profiles[i].name + "님은 늙으셨군요" + "</li>"
+    //   } else {
+    //     // console.log(profiles[i].name + "님은 젋으시네요.");
+    //     listStr += "<li>" +profiles[i].name + "님은 젋으시네요" + "</li>"
+    //   }
+    //
+    // }
+    //
+    // listStr += "</ul>";
+    //
+    // injectionTarget.innerHTML = listStr;
+
+    </script>
+    <div id="Pop">
+      <div class="pop" style="">
+        <h1 class="pop-header">
+          리스트 추가하기
+        </h1>
+        <button onclick="javascript:CloseLayer();">닫기</button>
+      </div>
+      <div class="mask"></div>
+    </div>
+  </body>
+</html>

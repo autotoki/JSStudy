@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'NanumGothic';
+	font-style: normal ;
+	font-weight: 400;
+	src: url('../fonts/NanumGothic-Regular.eot');/* IE9 Compat Modes */
+	src: url('../fonts/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),/* IE6-IE8 */
+			 url('../fonts/NanumGothic-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+		 	 url('../fonts/NanumGothic-Regular.woff') format('woff'),/* Pretty Modern Browsers */
+		 	 url('../fonts/NanumGothic-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+ }
+@font-face {
+	font-family: 'NanumGothicBold';
+	font-style: normal;
+	font-weight: 700;
+	src:url('../fonts/NanumGothic-Bold.eot');/* IE9 Compat Modes */
+	src:url('../fonts/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),/* IE6-IE8 */
+			url('../fonts/NanumGothic-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+		 	url('../fonts/NanumGothic-Bold.woff') format('woff'),/* Pretty Modern Browsers */
+		 	url('../fonts/NanumGothic-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+ }
+
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  -webkit-text-size-adjust: none;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+html {
+  height: 100%;
+}
+body {
+  position: fixed;
+  width: 100%;
+  min-width: 800px;
+  height: 100%;
+  min-height: 600px;
+  margin: 0;
+  padding: 0;
+  font-family: 'NanumGothic', sans-serif;
+  overflow: hidden;
+}
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+  cursor: pointer;
+}
+button {
+  vertical-align: top;
+  outline: 0;
+  cursor: pointer;
+}
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+
+/* common */
+.mgT30 {margin-top: 30px;}
+.mgB30 {margin-bottom: 30px;}
+
+
+/* board-list */
+.board-list {
+  width: 100%;
+  border-top: #555 2px solid;
+  /*border-bottom: #555 2px solid;*/
+  border-left: #888 1px solid;
+  margin-bottom:20px;
+  border-collapse: collapse;
+}
+.board-list th {
+  width: 100px;
+  line-height: 32px;
+  background-color:#eee;
+  border-bottom: #888 1px solid;
+  border-right: #888 1px solid;
+}
+.board-list td {
+  line-height: 32px;
+  padding-left: 10px;
+  border-bottom: #888 1px solid;
+  border-right: #888 1px solid;
+}
+.gen-m {width: 300px;background-color:#d3f2fd;}
+.gen-f {width: 300px;background-color:#fdd3d3;}
+.btn-type {line-height: 32px; padding: 0 20px;border: #bbb 1px solid;}
+
+/* layer-popup */
+#Pop {display: none;}
+.pop {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:600px;
+  height:500px;
+  z-index:5;
+  background: #FFF;
+  border:#000 1px solid;
+  text-align: center;
+  margin-top: -250px;
+  margin-left: -300px;
+}
+.pop-header {
+  background: #eee;
+  border-bottom: #ccc 1px solid;
+  line-height: 70px;
+  font-family: 'NanumGothicBold';
+}
+.pop > button {margin-top:190px;}
+.pj-pop-con {
+	padding: 20px 50px;
+}
+.mask{
+  position: fixed;
+  opacity:.6;
+  background: #000;
+  left:0;
+  bottom:0;
+  top:0;
+  right:0;
+}
+
+
+/* Layout */
+/*.pj-wrap {margin: 0 auto;width: 980px;}*/
+nav {height: 70px; background: #000;margin-bottom: 30px;}
+.pj-content {margin: 0 auto;width: 980px;}
+
+.pj-profile-write {
+	width: 100%;
+	overflow:hidden;
+	text-align: left;
+	margin-bottom:20px;
+}
+.pj-profile-write dt {
+	width: 100px;
+	display: inline-block;
+	line-height: 46px;
+}
+.pj-profile-write dd {
+	width: 390px;
+	display: inline-block;
+	line-height: 46px;
+}
+.input {
+	line-height: 22px;
+	width: 100%;
+}
