@@ -1,120 +1,40 @@
-var gnProfile = {
-  "name": "김민희",
-  gender: "M",
-  address: "서울시 강남구",
-  tel: "010-1234-1111 "
-};
-
-var ypProfile = {
-  name: "이은지",
-  gender: "F",
-  address: "서울시 영등포구",
-  tel: "010-1234-2222 "
-};
-
-var grProfile = {
-  name: "박지원",
-  gender: "M",
-  address: "서울시 중랑구 ",
-  tel: "010-1234-3333 "
-};
-
-
-var profiles = [gnProfile, ypProfile, grProfile];
-
-function injection () {
-
-  var injectionTarget = document.getElementById('injectionTarget');
-  var listStr = "";
-
-  var tmpl = "\
-  <table class='board-list'>\
-    <tr>\
-      <th>이름</th>\
-      <td>{name}</td>\
-      <th>성별</th>\
-      <td class='{css-gen}'>{gender}</td>\
-    </tr>\
-    <tr>\
-      <th>주소</th>\
-      <td colspan='3'>{address}</td>\
-    </tr>\
-    <tr>\
-      <th>전화번호</th>\
-      <td colspan='3'>{tel}</td>\
-    </tr>\
-  </table>\
-  ";
-
-  for (var i = 0; i < profiles.length; i++) {
-
-    // var tmp;
-    // tmp = tmpl.replace("{name}", profiles[i].name);
-    // tmp = tmp.replace("{gender}", profiles[i].gender);
-    // tmp = tmp.replace("{address}", profiles[i].address);
-    // tmp = tmp.replace("{tel}", profiles[i].tel);
-    // if (profiles[i].gender === "M") {
-    //   tmp = tmp.replace("{css-gen}", "gen-m");
-    // } else {
-    //   tmp = tmp.replace("{css-gen}", "gen-f");
-    // }
-
-    // var tmp = tmpl
-    //             .replace("{name}", profiles[i].name)
-    //             .replace("{gender}", profiles[i].gender)
-    //             .replace("{address}", profiles[i].address)
-    //             .replace("{tel}", profiles[i].tel)
-    //             .replace("{css-gen}", profiles[i].gender === "M" ? "gen-m" : "gen-f");
-
-    var tmp = tmpl.replace(/{.+?}/g, function (item) {
-
-      var key = item.substring(1, item.length-1);
-
-      // if (key === "css-gen") {
-      //   return profiles[i].gender === "M" ? "gen-m" : "gen-f";
-      // }
-      //   return profiles[i][key];
-      // }
-
-      switch (key) {
-        case "css-gen":
-          return profiles[i].gender === "M" ? "gen-m" : "gen-f";
-          break;
-        default:
-          return profiles[i][key];
-      }
-
-    });
-
-
-    listStr += tmp;
-    // for (var i = 0; i < profiles.length; i++) {
-    //
-    //   if (profiles[i].age > 30 && profiles[i].age < 40) {
-    //     // console.log(profiles[i].name + "님은 늙으셨군요");
-    //     listStr += "<li>" +profiles[i].name + "님은 늙으셨군요" + "</li>"
-    //   } else {
-    //     // console.log(profiles[i].name + "님은 젋으시네요.");
-    //     listStr += "<li>" +profiles[i].name + "님은 젋으시네요" + "</li>"
-    //   }
-    //
-    // }
-
-  }
-
-  injectionTarget.innerHTML = listStr;
-
+function ProfileManager (spec) {
+  this._profiles = [];
+  this._template = spec.template;
+  this._injectTarget = spec.target;
 }
 
+ProfileManager.prototype.add = function (profile) {
+  console.log("프로필이 추가 됩니다.");
+  this._profiles.push(profile);
 
-injection();
+  var tmp = this._template.replace(/{.+?}/g, function (item) {
+
+    var key = item.substring(1, item.length-1);
+
+    switch (key) {
+      case "css-gen":
+        return profile.gender === "M" ? "gen-m" : "gen-f";
+      default:
+        return profile[key];
+    }
+
+  });
+
+  var injectionTarget = document.getElementById(this._injectTarget);
+
+  injectionTarget.innerHTML += tmp;
+
+};
+
 
 
 var choiLayer = {
   getInputNames: function () {
     return ['pjName', 'pjGender', 'pjAddr', 'pjTel'];
   },
-  open: function () {
+  open: function (pManager) {
+    this._pManager = pManager;
     var el;
 
     var inputNames = this.getInputNames();
@@ -197,10 +117,7 @@ var choiLayer = {
     }
     profile.tel = value;
 
-
-    profiles.push(profile);
-
-    injection();
+    this._pManager.add(profile);
 
     this.close();
   }

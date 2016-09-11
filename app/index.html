@@ -1,6 +1,7 @@
 <!Doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <link type"text/css" rel="stylesheet" href="styles/css/chy.css" />
     <!--[if lt IE 9]>
       <script type="text/javascript" src="js/html5shiv.js"></script>
@@ -12,8 +13,8 @@
 
       </nav>
       <div class="pj-content">
-        <button onclick='javascript:choiLayer.open();' class='btn-type mgB30'>리스트 추가하기</button>
-        <div id="injectionTarget">
+        <button onclick='javascript:choiLayer.open(pManager);' class='btn-type mgB30'>리스트 추가하기</button>
+        <div id="divTarget">
         </div>
       </div>
     </div>
@@ -46,7 +47,45 @@
       <div class="mask"></div>
     </div>
 
+    <script src="vendor/jquery/jquery-3.1.0.min.js"></script>
     <script src="js/study.js"></script>
+    <script>
+      var pManager = new ProfileManager({
+        template: "\
+          <table class='board-list'>\
+            <tr>\
+              <th>이름</th>\
+              <td>{name}</td>\
+              <th>성별</th>\
+              <td class='{css-gen}'>{gender}</td>\
+            </tr>\
+            <tr>\
+              <th>주소</th>\
+              <td colspan='3'>{address}</td>\
+            </tr>\
+            <tr>\
+              <th>전화번호</th>\
+              <td colspan='3'>{tel}</td>\
+            </tr>\
+          </table>\
+        ",
+        target: "divTarget"
+      });
+
+      $(document).ready(function () {
+
+        $.getJSON("data/users.json")
+          .done(function (data) {
+            for (var i = 0; i < data.length; i++) {
+              pManager.add(data[i]);
+            }
+          })
+          .fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ", " + error;
+            console.log( "Request Failed: " + err );
+        });
+      });
+    </script>
 
   </body>
 </html>
