@@ -15,6 +15,7 @@
       <div class="pj-content">
         <button onclick='javascript:choiLayer.open(pManager);' class='btn-type mgB30'>리스트 추가하기</button>
         <div id="divTarget">
+          <!-- 여기에 삽입된다. -->
         </div>
       </div>
     </div>
@@ -40,7 +41,7 @@
             <dt><label for ="pjTel">전화번호</label></dt>
             <dd><input type"text" name="pjTel" class="input" /></dd>
           </dl>
-          <button onclick="javascript:choiLayer.save();" class="btn-type">저장</button>
+          <button onclick="javascript:choiLayer.saveAndUpdate();" class="btn-type">저장</button>
           <button onclick="javascript:choiLayer.close();" class="btn-type">닫기</button>
         </div>
       </div>
@@ -50,7 +51,8 @@
     <script src="vendor/jquery/jquery-3.1.0.min.js"></script>
     <script src="js/study.js"></script>
     <script>
-      var pManager = new ProfileManager({
+
+      var listItemMaker = new ListItemMaker({
         template: "\
           <table class='board-list'>\
             <tr>\
@@ -68,17 +70,29 @@
               <td colspan='3'>{tel}</td>\
             </tr>\
           </table>\
-        ",
-        target: "divTarget"
+          <button onclick='javascript:choiLayer.edit({idx});' class='btn-type'>수정</button>\
+          <button onclick='javascript:choiLayer.delete({idx});' class='btn-type'>삭제</button>\
+        "
       });
 
       $(document).ready(function () {
 
         $.getJSON("data/users.json")
           .done(function (data) {
+
+            var store = listItemMaker.store();
             for (var i = 0; i < data.length; i++) {
-              pManager.add(data[i]);
+              store.add(data[i]);
             }
+
+            var targetEl = document.getElementById('divTarget');
+            targetEl.appendChild(listItemMaker.makeEl(0));
+            targetEl.appendChild(listItemMaker.makeEl(1));
+            targetEl.appendChild(listItemMaker.makeEl(2));
+
+
+
+
           })
           .fail(function( jqxhr, textStatus, error ) {
             var err = textStatus + ", " + error;
