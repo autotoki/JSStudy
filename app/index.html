@@ -98,7 +98,72 @@
             var err = textStatus + ", " + error;
             console.log( "Request Failed: " + err );
         });
+
+
       });
+
+
+
+
+      // for (var i = 1; i <= 100; i++) {
+      //   if(i % 2 == 0){
+      //     console.log(i);
+      //   }
+      // }
+
+      function printChar(char, count) {
+        for (var i = 0; i < count; i++) {
+          var v = "";
+          for (var j = 0; j < i+1 ; j++) {
+            v += char;
+          }
+          console.log(v);
+        }
+
+      }
+
+      function printCharReverse(char, count) {
+        for (var i = count; i > 0; i--) {
+          var v = '';
+          for (var j = 0; j < i ; j++) {
+            v += char;
+          }
+          console.log(v);
+        }
+
+      }
+
+      for (var k = 1; k <= 30; k++) {
+        printChar("1", k);
+        printCharReverse("?", k);
+      }
+
+
+      //IIFE 이피 패턴
+      // var printStar = (function () {
+      //   var char = "*";
+      //   return function (count) {
+      //     printChar(char, count);
+      //     printCharReverse(char, count);
+      //   };
+      // })();
+
+      // 커링... 원래 입력 받아야 할 인자를 미리 받아놓음.
+      // printStar(3);
+      function starNum(count) {
+        var q = '*'
+        for (var i = 0; i < count; i++) {
+          if(i % 2 == 0){
+            console.log(q + q);
+          }
+          else{
+            console.log(q);
+          }
+        }
+
+      }
+      starNum(5);
+
     </script>
 
   </body>

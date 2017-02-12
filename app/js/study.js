@@ -69,16 +69,11 @@ ListItemMaker.prototype = {
 
     });
 
-
-    console.log(item);
-    console.log(template);
-    console.log("==============");
-    console.log(bindedTemplate);
-
     var el = document.createElement('div');
     el.innerHTML = bindedTemplate;
-    console.log(el);
+
     return el;
+
   }
 };
 
